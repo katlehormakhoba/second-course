@@ -11,8 +11,8 @@
   DTS:LocaleID="7177"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="24"
-  DTS:VersionGUID="{EF8D3177-4395-44DF-81A2-98E5797012F7}">
+  DTS:VersionBuild="29"
+  DTS:VersionGUID="{59247444-9062-4DAA-9C64-C4D4947FCD47}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -731,8 +731,7 @@
                           lineageId="Package\Foreach Loop Container\single file\readCustomerSourceFile.Outputs[Flat File Source Output].Columns[SalesPersonName]" />
                         <inputColumn
                           refId="Package\Foreach Loop Container\single file\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[U_CUSTOMERNAME]"
-                          cachedCodepage="1252"
-                          cachedDataType="str"
+                          cachedDataType="wstr"
                           cachedLength="50"
                           cachedName="U_CUSTOMERNAME"
                           externalMetadataColumnId="Package\Foreach Loop Container\single file\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CustomerName]"
@@ -1213,43 +1212,47 @@
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
+          Size="193.333333333334,42.6666666666667"
+          Id="Package\Foreach Loop Container\single file\readCustomerSourceFile"
+          TopLeft="288.12498711981,103.349995071887" />
+        <NodeLayout
+          Size="172,42.6666666666667"
+          Id="Package\Foreach Loop Container\single file\Flat File Destination"
+          TopLeft="539.99997586012,267.149987261296" />
+        <NodeLayout
           Size="172,42.6666666666667"
           Id="Package\Foreach Loop Container\single file\OLE DB Destination"
           TopLeft="292.499986924231,333.449984099865" />
-        <NodeLayout
-          Size="193.333333333334,42.6666666666667"
-          Id="Package\Foreach Loop Container\single file\readCustomerSourceFile"
-          TopLeft="289.999987035991,105.299994978904" />
         <NodeLayout
           Size="154.666666666667,42.6666666666667"
           Id="Package\Foreach Loop Container\single file\Derived Column"
           TopLeft="209.374990640208,213.849989802838" />
         <EdgeLayout
           Id="Package\Foreach Loop Container\single file.Paths[Flat File Source Output]"
-          TopLeft="386.666653702657,147.966661645571">
+          TopLeft="384.791653786477,146.016661738554">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-99.958329729116,65.8833281572668"
+              EndConnector="-98.0833298129355,67.8333280642841"
               Start="0,0"
-              End="-99.958329729116,58.3833281572668">
+              End="-98.0833298129355,60.3333280642841">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,28.9416640786334" />
+                    End="0,29.9166640321421" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,28.9416640786334"
-                    Point2="0,32.9416640786334"
-                    Point3="-4,32.9416640786334" />
+                    Point1="0,29.9166640321421"
+                    Point2="0,33.9166640321421"
+                    Point3="-4,33.9166640321421" />
                   <mssgle:LineSegment
-                    End="-95.958329729116,32.9416640786334" />
+                    End="-94.0833298129355,33.9166640321421" />
                   <mssgle:CubicBezierSegment
-                    Point1="-95.958329729116,32.9416640786334"
-                    Point2="-99.958329729116,32.9416640786334"
-                    Point3="-99.958329729116,36.9416640786334" />
+                    Point1="-94.0833298129355,33.9166640321421"
+                    Point2="-98.0833298129355,33.9166640321421"
+                    Point3="-98.0833298129355,37.9166640321421" />
                   <mssgle:LineSegment
-                    End="-99.958329729116,58.3833281572668" />
+                    End="-98.0833298129355,60.3333280642841" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1292,43 +1295,39 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="172,42.6666666666667"
-          Id="Package\Foreach Loop Container\single file\Flat File Destination"
-          TopLeft="539.99997586012,267.149987261296" />
         <EdgeLayout
           Id="Package\Foreach Loop Container\single file.Paths[Derived Column Error Output]"
           TopLeft="364.041657306875,235.183323136171">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="175.958318553245,53.2999974584579"
+              EndConnector="175.958318553245,53.299997458458"
               Start="0,0"
-              End="168.458318553245,53.2999974584579">
+              End="168.458318553245,53.299997458458">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="83.9791592766225,0" />
+                    End="83.9791592766227,0" />
                   <mssgle:CubicBezierSegment
-                    Point1="83.9791592766225,0"
-                    Point2="87.9791592766225,0"
-                    Point3="87.9791592766225,4" />
+                    Point1="83.9791592766227,0"
+                    Point2="87.9791592766227,0"
+                    Point3="87.9791592766227,4" />
                   <mssgle:LineSegment
-                    End="87.9791592766225,49.2999974584579" />
+                    End="87.9791592766227,49.299997458458" />
                   <mssgle:CubicBezierSegment
-                    Point1="87.9791592766225,49.2999974584579"
-                    Point2="87.9791592766225,53.2999974584579"
-                    Point3="91.9791592766225,53.2999974584579" />
+                    Point1="87.9791592766227,49.299997458458"
+                    Point2="87.9791592766227,53.299997458458"
+                    Point3="91.9791592766227,53.299997458458" />
                   <mssgle:LineSegment
-                    End="168.458318553245,53.2999974584579" />
+                    End="168.458318553245,53.299997458458" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="23.0177725578725,-17.609375,129.9227734375,11.609375"
+              BoundingBox="23.0177725578727,-17.609375,129.9227734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>

@@ -11,8 +11,8 @@
   DTS:LocaleID="7177"
   DTS:ObjectName="1_conditional_spit"
   DTS:PackageType="5"
-  DTS:VersionBuild="21"
-  DTS:VersionGUID="{DAC6C1BA-F7B8-44E1-9A87-F4300C70AAFA}">
+  DTS:VersionBuild="22"
+  DTS:VersionGUID="{587335BF-C8CA-447F-9D8C-9FADD8B74A77}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
