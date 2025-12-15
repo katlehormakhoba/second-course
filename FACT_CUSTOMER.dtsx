@@ -11,8 +11,8 @@
   DTS:LocaleID="7177"
   DTS:ObjectName="FACT_CUSTOMER"
   DTS:PackageType="5"
-  DTS:VersionBuild="39"
-  DTS:VersionGUID="{27F59808-CF9A-47EE-AAD8-D0534535A930}">
+  DTS:VersionBuild="41"
+  DTS:VersionGUID="{CB23A4FB-24C4-4858-820D-C4C2F794F085}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -304,6 +304,49 @@
               DTS:TextQualified="True"
               DTS:ObjectName="SalesPersonName"
               DTS:DTSID="{89E5225D-27B3-4D4A-878E-C0B987864674}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Flat File Connection Manager 3]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{3FD8E13D-7356-4DF0-93E6-EDA3D3184ECA}"
+      DTS:ObjectName="Flat File Connection Manager 3">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="7177"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="D:\SSIS\FILES\ERROR_FILE.txt">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="302"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Flat File Source Error Output Column"
+              DTS:DTSID="{AAB5F812-2DF2-48EF-884F-F19C4567F3FA}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="ErrorCode"
+              DTS:DTSID="{50F8517F-A62A-414C-A215-E0745F60C02B}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="ErrorColumn"
+              DTS:DTSID="{7A9E482C-6969-496E-BFD5-B72CA20FDA41}"
               DTS:CreationName="" />
           </DTS:FlatFileColumns>
         </DTS:ConnectionManager>
@@ -657,6 +700,81 @@
                           name="ErrorCode" />
                         <externalMetadataColumn
                           refId="Package\Foreach Loop Container\single file\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[ErrorColumn]"
+                          dataType="i4"
+                          name="ErrorColumn" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                </component>
+                <component
+                  refId="Package\Foreach Loop Container\single file\Flat File Destination 1"
+                  componentClassID="Microsoft.FlatFileDestination"
+                  contactInfo="Flat File Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+                  description="Flat File Destination"
+                  localeId="7177"
+                  name="Flat File Destination 1"
+                  version="1">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      description="Specifies whether the data will overwrite or append to the destination file."
+                      name="Overwrite">true</property>
+                    <property
+                      dataType="System.Null"
+                      description="Specifies the text to write to the destination file before any data is written."
+                      expressionType="Notify"
+                      name="Header" />
+                    <property
+                      dataType="System.Boolean"
+                      description="When text qualifier is enabled, specifies whether the text qualifier in the data written to the destination file will be escaped or not."
+                      name="EscapeQualifier">false</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Foreach Loop Container\single file\Flat File Destination 1.Connections[FlatFileConnection]"
+                      connectionManagerID="Package.ConnectionManagers[Flat File Connection Manager 3]"
+                      connectionManagerRefId="Package.ConnectionManagers[Flat File Connection Manager 3]"
+                      name="FlatFileConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Foreach Loop Container\single file\Flat File Destination 1.Inputs[Flat File Destination Input]"
+                      hasSideEffects="true"
+                      name="Flat File Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\single file\Flat File Destination 1.Inputs[Flat File Destination Input].Columns[Flat File Source Error Output Column]"
+                          cachedCodepage="1252"
+                          cachedDataType="text"
+                          cachedName="Flat File Source Error Output Column"
+                          externalMetadataColumnId="Package\Foreach Loop Container\single file\Flat File Destination 1.Inputs[Flat File Destination Input].ExternalColumns[Flat File Source Error Output Column]"
+                          lineageId="Package\Foreach Loop Container\single file\readCustomerSourceFile.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\single file\Flat File Destination 1.Inputs[Flat File Destination Input].Columns[ErrorCode]"
+                          cachedDataType="i4"
+                          cachedName="ErrorCode"
+                          externalMetadataColumnId="Package\Foreach Loop Container\single file\Flat File Destination 1.Inputs[Flat File Destination Input].ExternalColumns[ErrorCode]"
+                          lineageId="Package\Foreach Loop Container\single file\readCustomerSourceFile.Outputs[Flat File Source Error Output].Columns[ErrorCode]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\single file\Flat File Destination 1.Inputs[Flat File Destination Input].Columns[ErrorColumn]"
+                          cachedDataType="i4"
+                          cachedName="ErrorColumn"
+                          externalMetadataColumnId="Package\Foreach Loop Container\single file\Flat File Destination 1.Inputs[Flat File Destination Input].ExternalColumns[ErrorColumn]"
+                          lineageId="Package\Foreach Loop Container\single file\readCustomerSourceFile.Outputs[Flat File Source Error Output].Columns[ErrorColumn]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\single file\Flat File Destination 1.Inputs[Flat File Destination Input].ExternalColumns[Flat File Source Error Output Column]"
+                          codePage="1252"
+                          dataType="text"
+                          name="Flat File Source Error Output Column" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\single file\Flat File Destination 1.Inputs[Flat File Destination Input].ExternalColumns[ErrorCode]"
+                          dataType="i4"
+                          name="ErrorCode" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\single file\Flat File Destination 1.Inputs[Flat File Destination Input].ExternalColumns[ErrorColumn]"
                           dataType="i4"
                           name="ErrorColumn" />
                       </externalMetadataColumns>
@@ -1400,30 +1518,6 @@ where [refTable].[StatesName] = ?</property>
                           externalMetadataColumnId="Package\Foreach Loop Container\single file\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CustomerName]"
                           lineageId="Package\Foreach Loop Container\single file\Derived Column.Outputs[Derived Column Output].Columns[U_CUSTOMERNAME]" />
                         <inputColumn
-                          refId="Package\Foreach Loop Container\single file\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CountryId]"
-                          cachedDataType="i4"
-                          cachedName="CountryId"
-                          externalMetadataColumnId="Package\Foreach Loop Container\single file\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CountryName]"
-                          lineageId="Package\Foreach Loop Container\single file\Lookup OF COUNTRY.Outputs[Lookup Match Output].Columns[CountryId]" />
-                        <inputColumn
-                          refId="Package\Foreach Loop Container\single file\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[StatesId]"
-                          cachedDataType="i4"
-                          cachedName="StatesId"
-                          externalMetadataColumnId="Package\Foreach Loop Container\single file\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[StatesName]"
-                          lineageId="Package\Foreach Loop Container\single file\Lookup STATES.Outputs[Lookup Match Output].Columns[StatesId]" />
-                        <inputColumn
-                          refId="Package\Foreach Loop Container\single file\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[PersonId]"
-                          cachedDataType="i4"
-                          cachedName="PersonId"
-                          externalMetadataColumnId="Package\Foreach Loop Container\single file\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SalesPersonName]"
-                          lineageId="Package\Foreach Loop Container\single file\Lookup sales person.Outputs[Lookup Match Output].Columns[PersonId]" />
-                        <inputColumn
-                          refId="Package\Foreach Loop Container\single file\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[ProductId]"
-                          cachedDataType="i4"
-                          cachedName="ProductId"
-                          externalMetadataColumnId="Package\Foreach Loop Container\single file\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ProductName]"
-                          lineageId="Package\Foreach Loop Container\single file\Lookup product.Outputs[Lookup Match Output].Columns[ProductId]" />
-                        <inputColumn
                           refId="Package\Foreach Loop Container\single file\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[SalesDate]"
                           cachedCodepage="1252"
                           cachedDataType="str"
@@ -1431,6 +1525,30 @@ where [refTable].[StatesName] = ?</property>
                           cachedName="SalesDate"
                           externalMetadataColumnId="Package\Foreach Loop Container\single file\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SalesDate]"
                           lineageId="Package\Foreach Loop Container\single file\readCustomerSourceFile.Outputs[Flat File Source Output].Columns[SalesDate]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\single file\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CountryId]"
+                          cachedDataType="i4"
+                          cachedName="CountryId"
+                          externalMetadataColumnId="Package\Foreach Loop Container\single file\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CountryId]"
+                          lineageId="Package\Foreach Loop Container\single file\Lookup OF COUNTRY.Outputs[Lookup Match Output].Columns[CountryId]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\single file\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[StatesId]"
+                          cachedDataType="i4"
+                          cachedName="StatesId"
+                          externalMetadataColumnId="Package\Foreach Loop Container\single file\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[StatesId]"
+                          lineageId="Package\Foreach Loop Container\single file\Lookup STATES.Outputs[Lookup Match Output].Columns[StatesId]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\single file\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[ProductId]"
+                          cachedDataType="i4"
+                          cachedName="ProductId"
+                          externalMetadataColumnId="Package\Foreach Loop Container\single file\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ProductId]"
+                          lineageId="Package\Foreach Loop Container\single file\Lookup product.Outputs[Lookup Match Output].Columns[ProductId]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\single file\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[PersonId]"
+                          cachedDataType="i4"
+                          cachedName="PersonId"
+                          externalMetadataColumnId="Package\Foreach Loop Container\single file\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SalesPersonId]"
+                          lineageId="Package\Foreach Loop Container\single file\Lookup sales person.Outputs[Lookup Match Output].Columns[PersonId]" />
                       </inputColumns>
                       <externalMetadataColumns
                         isUsed="True">
@@ -1455,29 +1573,21 @@ where [refTable].[StatesName] = ?</property>
                           dataType="dbDate"
                           name="SalesDate" />
                         <externalMetadataColumn
-                          refId="Package\Foreach Loop Container\single file\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CountryName]"
-                          codePage="1252"
-                          dataType="str"
-                          length="100"
-                          name="CountryName" />
+                          refId="Package\Foreach Loop Container\single file\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CountryId]"
+                          dataType="i4"
+                          name="CountryId" />
                         <externalMetadataColumn
-                          refId="Package\Foreach Loop Container\single file\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[StatesName]"
-                          codePage="1252"
-                          dataType="str"
-                          length="100"
-                          name="StatesName" />
+                          refId="Package\Foreach Loop Container\single file\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[StatesId]"
+                          dataType="i4"
+                          name="StatesId" />
                         <externalMetadataColumn
-                          refId="Package\Foreach Loop Container\single file\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ProductName]"
-                          codePage="1252"
-                          dataType="str"
-                          length="100"
-                          name="ProductName" />
+                          refId="Package\Foreach Loop Container\single file\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ProductId]"
+                          dataType="i4"
+                          name="ProductId" />
                         <externalMetadataColumn
-                          refId="Package\Foreach Loop Container\single file\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SalesPersonName]"
-                          codePage="1252"
-                          dataType="str"
-                          length="100"
-                          name="SalesPersonName" />
+                          refId="Package\Foreach Loop Container\single file\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SalesPersonId]"
+                          dataType="i4"
+                          name="SalesPersonId" />
                       </externalMetadataColumns>
                     </input>
                   </inputs>
@@ -1542,12 +1652,12 @@ where [refTable].[StatesName] = ?</property>
                           codePage="1252"
                           dataType="str"
                           errorOrTruncationOperation="Conversion"
-                          errorRowDisposition="FailComponent"
+                          errorRowDisposition="RedirectRow"
                           externalMetadataColumnId="Package\Foreach Loop Container\single file\readCustomerSourceFile.Outputs[Flat File Source Output].ExternalColumns[CustomerCode]"
                           length="50"
                           lineageId="Package\Foreach Loop Container\single file\readCustomerSourceFile.Outputs[Flat File Source Output].Columns[CustomerCode]"
                           name="CustomerCode"
-                          truncationRowDisposition="FailComponent">
+                          truncationRowDisposition="RedirectRow">
                           <properties>
                             <property
                               dataType="System.Boolean"
@@ -1564,12 +1674,12 @@ where [refTable].[StatesName] = ?</property>
                           codePage="1252"
                           dataType="str"
                           errorOrTruncationOperation="Conversion"
-                          errorRowDisposition="FailComponent"
+                          errorRowDisposition="RedirectRow"
                           externalMetadataColumnId="Package\Foreach Loop Container\single file\readCustomerSourceFile.Outputs[Flat File Source Output].ExternalColumns[CustomerName]"
                           length="50"
                           lineageId="Package\Foreach Loop Container\single file\readCustomerSourceFile.Outputs[Flat File Source Output].Columns[CustomerName]"
                           name="CustomerName"
-                          truncationRowDisposition="FailComponent">
+                          truncationRowDisposition="RedirectRow">
                           <properties>
                             <property
                               dataType="System.Boolean"
@@ -1586,12 +1696,12 @@ where [refTable].[StatesName] = ?</property>
                           codePage="1252"
                           dataType="str"
                           errorOrTruncationOperation="Conversion"
-                          errorRowDisposition="FailComponent"
+                          errorRowDisposition="RedirectRow"
                           externalMetadataColumnId="Package\Foreach Loop Container\single file\readCustomerSourceFile.Outputs[Flat File Source Output].ExternalColumns[SalesPersonName]"
                           length="50"
                           lineageId="Package\Foreach Loop Container\single file\readCustomerSourceFile.Outputs[Flat File Source Output].Columns[SalesPersonName]"
                           name="SalesPersonName"
-                          truncationRowDisposition="FailComponent">
+                          truncationRowDisposition="RedirectRow">
                           <properties>
                             <property
                               dataType="System.Boolean"
@@ -1608,12 +1718,12 @@ where [refTable].[StatesName] = ?</property>
                           codePage="1252"
                           dataType="str"
                           errorOrTruncationOperation="Conversion"
-                          errorRowDisposition="FailComponent"
+                          errorRowDisposition="RedirectRow"
                           externalMetadataColumnId="Package\Foreach Loop Container\single file\readCustomerSourceFile.Outputs[Flat File Source Output].ExternalColumns[CustomerAmount]"
                           length="50"
                           lineageId="Package\Foreach Loop Container\single file\readCustomerSourceFile.Outputs[Flat File Source Output].Columns[CustomerAmount]"
                           name="CustomerAmount"
-                          truncationRowDisposition="FailComponent">
+                          truncationRowDisposition="RedirectRow">
                           <properties>
                             <property
                               dataType="System.Boolean"
@@ -1630,12 +1740,12 @@ where [refTable].[StatesName] = ?</property>
                           codePage="1252"
                           dataType="str"
                           errorOrTruncationOperation="Conversion"
-                          errorRowDisposition="FailComponent"
+                          errorRowDisposition="RedirectRow"
                           externalMetadataColumnId="Package\Foreach Loop Container\single file\readCustomerSourceFile.Outputs[Flat File Source Output].ExternalColumns[SalesDate]"
                           length="50"
                           lineageId="Package\Foreach Loop Container\single file\readCustomerSourceFile.Outputs[Flat File Source Output].Columns[SalesDate]"
                           name="SalesDate"
-                          truncationRowDisposition="FailComponent">
+                          truncationRowDisposition="RedirectRow">
                           <properties>
                             <property
                               dataType="System.Boolean"
@@ -1652,12 +1762,12 @@ where [refTable].[StatesName] = ?</property>
                           codePage="1252"
                           dataType="str"
                           errorOrTruncationOperation="Conversion"
-                          errorRowDisposition="FailComponent"
+                          errorRowDisposition="RedirectRow"
                           externalMetadataColumnId="Package\Foreach Loop Container\single file\readCustomerSourceFile.Outputs[Flat File Source Output].ExternalColumns[CountryName]"
                           length="50"
                           lineageId="Package\Foreach Loop Container\single file\readCustomerSourceFile.Outputs[Flat File Source Output].Columns[CountryName]"
                           name="CountryName"
-                          truncationRowDisposition="FailComponent">
+                          truncationRowDisposition="RedirectRow">
                           <properties>
                             <property
                               dataType="System.Boolean"
@@ -1674,12 +1784,12 @@ where [refTable].[StatesName] = ?</property>
                           codePage="1252"
                           dataType="str"
                           errorOrTruncationOperation="Conversion"
-                          errorRowDisposition="FailComponent"
+                          errorRowDisposition="RedirectRow"
                           externalMetadataColumnId="Package\Foreach Loop Container\single file\readCustomerSourceFile.Outputs[Flat File Source Output].ExternalColumns[StatesName]"
                           length="50"
                           lineageId="Package\Foreach Loop Container\single file\readCustomerSourceFile.Outputs[Flat File Source Output].Columns[StatesName]"
                           name="StatesName"
-                          truncationRowDisposition="FailComponent">
+                          truncationRowDisposition="RedirectRow">
                           <properties>
                             <property
                               dataType="System.Boolean"
@@ -1696,12 +1806,12 @@ where [refTable].[StatesName] = ?</property>
                           codePage="1252"
                           dataType="str"
                           errorOrTruncationOperation="Conversion"
-                          errorRowDisposition="FailComponent"
+                          errorRowDisposition="RedirectRow"
                           externalMetadataColumnId="Package\Foreach Loop Container\single file\readCustomerSourceFile.Outputs[Flat File Source Output].ExternalColumns[ProductName]"
                           length="50"
                           lineageId="Package\Foreach Loop Container\single file\readCustomerSourceFile.Outputs[Flat File Source Output].Columns[ProductName]"
                           name="ProductName"
-                          truncationRowDisposition="FailComponent">
+                          truncationRowDisposition="RedirectRow">
                           <properties>
                             <property
                               dataType="System.Boolean"
@@ -1807,6 +1917,11 @@ where [refTable].[StatesName] = ?</property>
                   endId="Package\Foreach Loop Container\single file\Lookup OF COUNTRY.Inputs[Lookup Input]"
                   name="Derived Column Output"
                   startId="Package\Foreach Loop Container\single file\Derived Column.Outputs[Derived Column Output]" />
+                <path
+                  refId="Package\Foreach Loop Container\single file.Paths[Flat File Source Error Output]"
+                  endId="Package\Foreach Loop Container\single file\Flat File Destination 1.Inputs[Flat File Destination Input]"
+                  name="Flat File Source Error Output"
+                  startId="Package\Foreach Loop Container\single file\readCustomerSourceFile.Outputs[Flat File Source Error Output]" />
                 <path
                   refId="Package\Foreach Loop Container\single file.Paths[Flat File Source Output]"
                   endId="Package\Foreach Loop Container\single file\Derived Column.Inputs[Derived Column Input]"
@@ -1925,37 +2040,37 @@ where [refTable].[StatesName] = ?</property>
     design-time-name="Package\Foreach Loop Container\single file">
     <LayoutInfo>
       <GraphLayout
-        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="193.333333333334,42.6666666666667"
           Id="Package\Foreach Loop Container\single file\readCustomerSourceFile"
-          TopLeft="230.62498969026,8.44999959707169" />
+          TopLeft="73.749996703119,22.7499989151946" />
         <NodeLayout
           Size="172,42.6666666666667"
           Id="Package\Foreach Loop Container\single file\Flat File Destination"
-          TopLeft="681.249969545753,10.3999995040896" />
+          TopLeft="681.249969545753,21.4499989771846" />
         <NodeLayout
           Size="172,42.6666666666667"
           Id="Package\Foreach Loop Container\single file\OLE DB Destination"
-          TopLeft="223.124990025535,367.249982488156" />
+          TopLeft="223.124990025535,378.299981961251" />
         <NodeLayout
           Size="154.666666666667,42.6666666666667"
           Id="Package\Foreach Loop Container\single file\Derived Column"
-          TopLeft="469.374979017303,4.54999978303941" />
+          TopLeft="469.374979017303,15.5999992561344" />
         <EdgeLayout
           Id="Package\Foreach Loop Container\single file.Paths[Flat File Source Output]"
-          TopLeft="423.958323023593,27.8333330233889">
+          TopLeft="267.083330036452,40.5083324189978">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="45.4166559937092,0"
+              EndConnector="202.29164898085,0"
               Start="0,0"
-              End="37.9166559937092,0">
+              End="194.79164898085,0">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="37.9166559937092,0" />
+                    End="194.79164898085,0" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1966,7 +2081,7 @@ where [refTable].[StatesName] = ?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Foreach Loop Container\single file.Paths[Derived Column Error Output]"
-          TopLeft="624.041645683969,28.8083329768979">
+          TopLeft="624.041645683969,39.8583324499928">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -1991,10 +2106,10 @@ where [refTable].[StatesName] = ?</property>
         <NodeLayout
           Size="180,42.6666666666667"
           Id="Package\Foreach Loop Container\single file\Lookup OF COUNTRY"
-          TopLeft="238.124989354983,74.0999964666368" />
+          TopLeft="238.124989354983,85.1499959397318" />
         <EdgeLayout
           Id="Package\Foreach Loop Container\single file.Paths[Derived Column Output]"
-          TopLeft="546.708312350636,47.2166664497061">
+          TopLeft="546.708312350636,58.266665922801">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -2029,10 +2144,10 @@ where [refTable].[StatesName] = ?</property>
         <NodeLayout
           Size="153.333333333334,42.6666666666667"
           Id="Package\Foreach Loop Container\single file\Lookup STATES"
-          TopLeft="469.999978989363,70.9999969005586" />
+          TopLeft="469.999978989363,82.0499963736536" />
         <EdgeLayout
           Id="Package\Foreach Loop Container\single file.Paths[Lookup Match Output]"
-          TopLeft="418.124989354983,93.883330016931">
+          TopLeft="418.124989354983,104.933329490026">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -2057,14 +2172,14 @@ where [refTable].[StatesName] = ?</property>
         <NodeLayout
           Size="153.333333333334,42.6666666666667"
           Id="Package\Foreach Loop Container\single file\Lookup product"
-          TopLeft="77.3749967869372,141.349993522167" />
+          TopLeft="259.249988656491,162.799992499352" />
         <NodeLayout
           Size="176,42.6666666666667"
           Id="Package\Foreach Loop Container\single file\Lookup sales person"
-          TopLeft="659.374970523642,71.4999965906144" />
+          TopLeft="659.374970523642,82.5499960637094" />
         <EdgeLayout
           Id="Package\Foreach Loop Container\single file.Paths[Lookup Match Output1]"
-          TopLeft="623.333312322697,92.5833300789199">
+          TopLeft="623.333312322697,103.633329552015">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -2088,73 +2203,113 @@ where [refTable].[StatesName] = ?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Foreach Loop Container\single file.Paths[Lookup Match Output2]"
-          TopLeft="747.374970523642,114.166663257281">
+          TopLeft="747.374970523642,125.216662730376">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-593.333307070038,27.1833302648863"
+              EndConnector="-411.458315200483,37.5833297689757"
               Start="0,0"
-              End="-593.333307070038,19.6833302648863">
+              End="-411.458315200483,30.0833297689757">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,9.59166513244317" />
+                    End="0,14.7916648844879" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,9.59166513244317"
-                    Point2="0,13.5916651324432"
-                    Point3="-4,13.5916651324432" />
+                    Point1="0,14.7916648844879"
+                    Point2="0,18.7916648844879"
+                    Point3="-4,18.7916648844879" />
                   <mssgle:LineSegment
-                    End="-589.333307070038,13.5916651324432" />
+                    End="-407.458315200483,18.7916648844879" />
                   <mssgle:CubicBezierSegment
-                    Point1="-589.333307070038,13.5916651324432"
-                    Point2="-593.333307070038,13.5916651324432"
-                    Point3="-593.333307070038,17.5916651324432" />
+                    Point1="-407.458315200483,18.7916648844879"
+                    Point2="-411.458315200483,18.7916648844879"
+                    Point3="-411.458315200483,22.7916648844879" />
                   <mssgle:LineSegment
-                    End="-593.333307070038,19.6833302648863" />
+                    End="-411.458315200483,30.0833297689757" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-344.858040253769,18.5916651324432,96.3827734375,11.609375"
+              BoundingBox="-253.920544318992,23.7916648844879,96.3827734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Foreach Loop Container\single file.Paths[Lookup Match Output3]"
-          TopLeft="154.041663453604,184.016660188834">
+          TopLeft="335.916655323158,205.466659166018">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="155.083326571931,183.233322299321"
+              EndConnector="-26.791665297623,172.833322795232"
               Start="0,0"
-              End="155.083326571931,175.733322299321">
+              End="-26.791665297623,165.333322795232">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,87.6166611496607" />
+                    End="0,82.416661397616" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,87.6166611496607"
-                    Point2="0,91.6166611496607"
-                    Point3="4,91.6166611496607" />
+                    Point1="0,82.416661397616"
+                    Point2="0,86.416661397616"
+                    Point3="-4,86.416661397616" />
                   <mssgle:LineSegment
-                    End="151.083326571931,91.6166611496607" />
+                    End="-22.791665297623,86.416661397616" />
                   <mssgle:CubicBezierSegment
-                    Point1="151.083326571931,91.6166611496607"
-                    Point2="155.083326571931,91.6166611496607"
-                    Point3="155.083326571931,95.6166611496607" />
+                    Point1="-22.791665297623,86.416661397616"
+                    Point2="-26.791665297623,86.416661397616"
+                    Point3="-26.791665297623,90.416661397616" />
                   <mssgle:LineSegment
-                    End="155.083326571931,175.733322299321" />
+                    End="-26.791665297623,165.333322795232" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="29.3502765672156,96.6166611496607,96.3827734375,11.609375"
+              BoundingBox="-61.5872193675615,91.416661397616,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="153.333333333334,42.6666666666667"
+          Id="Package\Foreach Loop Container\single file\Flat File Destination 1"
+          TopLeft="43.1249980721623,119.599994297028" />
+        <EdgeLayout
+          Id="Package\Foreach Loop Container\single file.Paths[Flat File Source Error Output]"
+          TopLeft="170.416663369786,65.4166655818613">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-50.6249986309566,54.1833287151665"
+              Start="0,0"
+              End="-50.6249986309566,46.6833287151665">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.0916643575832" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,23.0916643575832"
+                    Point2="0,27.0916643575832"
+                    Point3="-4,27.0916643575832" />
+                  <mssgle:LineSegment
+                    End="-46.6249986309566,27.0916643575832" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-46.6249986309566,27.0916643575832"
+                    Point2="-50.6249986309566,27.0916643575832"
+                    Point3="-50.6249986309566,31.0916643575832" />
+                  <mssgle:LineSegment
+                    End="-50.6249986309566,46.6833287151665" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-88.9388860342283,32.0916643575832,127.2527734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
